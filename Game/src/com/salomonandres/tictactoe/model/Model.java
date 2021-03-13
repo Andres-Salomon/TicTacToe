@@ -30,7 +30,7 @@ public class Model {
 		}
 	}
 
-	private boolean squareIsEmpty(int xPos, int yPos) {
+	public boolean squareIsEmpty(int xPos, int yPos) {
 		if (board[xPos][yPos] != 'O' && board[xPos][yPos] != 'X') {
 			return true;
 		}

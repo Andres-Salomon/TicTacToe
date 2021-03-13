@@ -22,80 +22,64 @@ public class Controller {
 		Controller.ticTacToe = ticTacToe;
 	}
 
+	public int turn(int xPos, int yPos) {
+		if (model.squareIsEmpty(xPos, yPos)) {
+			model.fillSquare(xPos, yPos);
+			view.markSquare(xPos, yPos);
+			isTicTacToe();
+			turn++;
+		}
+
+		return turn;
+	}
+
+	private void isTicTacToe() {
+		if (ticTacToe) {
+			turn = 0;
+			model.resetBoard();
+			view.gameOver();
+		} else if (turn == 9 && ticTacToe == false) {
+			turn = 0;
+			model.resetBoard();
+			view.gameOverTie();
+		}
+		ticTacToe = false;
+
+	}
+
 	public class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
 			case "00":
-				model.fillSquare(0, 0);
-				view.markSquare(0, 0);
-				isTicTacToe();
-				turn++;
+				turn(0, 0);
 				break;
 			case "01":
-				model.fillSquare(0, 1);
-				view.markSquare(0, 1);
-				isTicTacToe();
-				turn++;
+				turn(0, 1);
 				break;
 			case "02":
-				model.fillSquare(0, 2);
-				view.markSquare(0, 2);
-				isTicTacToe();
-				turn++;
+				turn(0, 2);
 				break;
 			case "10":
-				model.fillSquare(1, 0);
-				view.markSquare(1, 0);
-				isTicTacToe();
-				turn++;
+				turn(1, 0);
 				break;
 			case "11":
-				model.fillSquare(1, 1);
-				view.markSquare(1, 1);
-				isTicTacToe();
-				turn++;
+				turn(1, 1);
 				break;
 			case "12":
-				model.fillSquare(1, 2);
-				view.markSquare(1, 2);
-				isTicTacToe();
-				turn++;
+				turn(1, 2);
 				break;
 			case "20":
-				model.fillSquare(2, 0);
-				view.markSquare(2, 0);
-				isTicTacToe();
-				turn++;
+				turn(2, 0);
 				break;
 			case "21":
-				model.fillSquare(2, 1);
-				view.markSquare(2, 1);
-				isTicTacToe();
-				turn++;
+				turn(2, 1);
 				break;
 			case "22":
-				model.fillSquare(2, 2);
-				view.markSquare(2, 2);
-				isTicTacToe();
-				turn++;
+				turn(2, 2);
 				break;
 			}
-		}
-
-		private void isTicTacToe() {
-			if (ticTacToe) {
-				turn = 0;
-				model.resetBoard();
-				view.gameOver();
-			} else if (turn == 9 && ticTacToe == false) {
-				turn = 0;
-				model.resetBoard();
-				view.gameOverTie();
-			}
-			ticTacToe = false;
-
 		}
 
 	}
